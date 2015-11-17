@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
                         Marcapollo QuestSDK for iOS.
                        DESC
 
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/QuestSDK"
+  s.homepage         = "https://github.com/shine-chen/QuestSDK-iOS"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Shine Chen" => "hsiehwei029@gmail.com" }
