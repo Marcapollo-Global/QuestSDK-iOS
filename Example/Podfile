@@ -1,0 +1,13 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'QuestSDK_Example', :exclusive => true do
+  pod "QuestSDK", :path => "../"
+end
+
+target 'QuestSDK_Tests', :exclusive => true do
+  pod "QuestSDK", :path => "../"
+
+  pod 'Specta'
+  pod 'Expecta'
+end
