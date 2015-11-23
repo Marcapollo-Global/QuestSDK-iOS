@@ -96,6 +96,9 @@ typedef void (^QueryCompletionHandler)(NSArray *, NSError *);
 // List beacon notifications
 - (void) listBeaconNotifications:(MQBeacon *)beacon withComplete:(QueryCompletionHandler)complete;
 
+// List beacon stores
+- (void) listBeaconStores:(MQBeacon *)beacon withComplete:(QueryCompletionHandler) complete;
+
 // List application stores
 - (void) listAppStores:(QueryCompletionHandler)complete;
 

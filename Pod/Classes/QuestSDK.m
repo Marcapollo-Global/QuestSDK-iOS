@@ -205,6 +205,17 @@ static id _sharedInstance;
    withSerializable:[MQFlyer class] completionHandler:complete];
 }
 
+- (void) listBeaconStores:(MQBeacon *)beacon withComplete:(QueryCompletionHandler) complete
+{
+    NSLog(@"%s", __FUNCTION__);
+    
+    [self queryPath:[NSString stringWithFormat:@"beacons/%@/%ld/%ld/stores/",
+                     beacon.uuid,
+                     beacon.major,
+                     beacon.minor]
+   withSerializable:[MQStore class] completionHandler:complete];
+}
+
 - (void) listBeaconNotifications:(MQBeacon *)beacon withComplete:(QueryCompletionHandler)complete
 {
     NSLog(@"%s", __FUNCTION__);

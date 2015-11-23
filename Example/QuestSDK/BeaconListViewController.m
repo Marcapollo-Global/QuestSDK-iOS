@@ -11,6 +11,7 @@
 
 #import "FlyerListViewController.h"
 #import "NotificationListViewController.h"
+#import "StoreListViewController.h"
 #import "UIUtils.h"
 
 @interface BeaconListViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -80,13 +81,15 @@
     }]];
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"List Flyers" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
         [self listFlyers:beacon];
     }]];
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"List Notifications" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
         [self listNotifications:beacon];
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"List Stores" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self listStores:beacon];
     }]];
     
     [self presentViewController:alertController animated:YES completion:nil];
@@ -135,6 +138,25 @@
     }];
 }
 
+- (void) listStores:(MQBeacon *) beacon
+{
+    if (!beacon.major || !beacon.minor) {
+        beacon = [beacon copy];
+        beacon.major = 1;
+        beacon.minor = 1;
+    }
+    
+    [[QuestSDK sharedInstance] listBeaconStores:beacon withComplete:^(NSArray *data, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+            [UIUtils alertError:error withParent:self];
+            return;
+        }
+        
+        [self showStores:data];
+    }];
+}
+
 #pragma mark - Navigation
 
 - (void) showFlyers:(NSArray *) flyers
@@ -152,6 +174,13 @@
     
     viewController.notifications = notifications;
     
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (void) showStores:(NSArray *) stores
+{
+    StoreListViewController *viewController = [[StoreListViewController alloc] initWithNibName:@"StoreListViewController" bundle:nil];
+    viewController.stores = stores;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

@@ -22,7 +22,7 @@ PODS:
     - AFNetworking/NSURLSession
   - Expecta (1.0.5)
   - QuestSDK (0.1.0):
-    - AFNetworking (~> 2.3)
+    - AFNetworking (~> 2.6.3)
   - Specta (1.0.5)
 
 DEPENDENCIES:
@@ -37,7 +37,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   Expecta: e1c022fcd33910b6be89c291d2775b3fe27a89fe
-  QuestSDK: 0917d8b8585b764edc221128f50df92424de7934
+  QuestSDK: 7a395a81fb6dd0f69bc3c5bd2e7f3daf26a32c99
   Specta: ac94d110b865115fe60ff2c6d7281053c6f8e8a2
 
 COCOAPODS: 0.38.2
