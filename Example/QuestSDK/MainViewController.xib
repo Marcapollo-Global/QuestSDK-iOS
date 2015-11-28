@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
             <connections>
+                <outlet property="tableView" destination="xSP-0U-5Ki" id="Evo-CP-RhD"/>
                 <outlet property="textView" destination="ALs-Wx-NP4" id="Y29-IF-sS4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,7 +22,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="iiN-zw-b5Q"/>
-                        <outlet property="delegate" destination="-1" id="FhZ-3c-JRx"/>
+                        <outlet property="delegate" destination="-1" id="fsf-M2-d4p"/>
                     </connections>
                 </tableView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ALs-Wx-NP4">

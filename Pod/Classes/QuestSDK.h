@@ -26,12 +26,16 @@ FOUNDATION_EXPORT NSString *kQuestBeaconPropertyUUID;
 
 @end
 
+@class CLBeacon;
+
 @interface MQBeacon : NSObject<NSCopying, MQJsonParsable>
 
 @property (nonatomic, copy) NSString *uuid;
 @property (nonatomic, assign) NSInteger major;
 @property (nonatomic, assign) NSInteger minor;
 @property (nonatomic, copy) NSString *tagName;
+// The detected raw CoreLocation beacon
+@property (nonatomic, retain) CLBeacon *clBeacon;
 
 @end
 
@@ -77,6 +81,12 @@ FOUNDATION_EXPORT NSString *kQuestBeaconPropertyUUID;
 
 @end
 
+@protocol MQMonitoringForBeaconDelegate <NSObject>
+
+- (void) questDidRangeBeacons:(NSArray<MQBeacon *> *)beacons;
+
+@end
+
 typedef void (^QueryCompletionHandler)(NSArray *, NSError *);
 
 @interface QuestSDK : NSObject
@@ -84,6 +94,8 @@ typedef void (^QueryCompletionHandler)(NSArray *, NSError *);
 @property (nonatomic, copy) NSString *appKey;
 
 + (instancetype) sharedInstance;
+
+- (BOOL) isAuthorized;
 
 - (void) auth:(void(^)(NSError *))complete;
 
@@ -104,5 +116,14 @@ typedef void (^QueryCompletionHandler)(NSArray *, NSError *);
 
 // Lits store beacons
 - (void) listStoreBeacons:(MQStore *)store withComplete:(QueryCompletionHandler)complete;
+
+- (BOOL) checkOrAskForUserPermission;
+
+// Start monitoring for beacon
+- (void) startMonitoringForBeacon:(MQBeacon *)beacon;
+// Stop monitoring for beacon
+- (void) stopMonitoringForBeacon:(MQBeacon *)beacon;
+
+@property (nonatomic, retain) id<MQMonitoringForBeaconDelegate> monitoringDelegate;
 
 @end

@@ -11,5 +11,6 @@
 @interface BeaconListViewController : UIViewController
 
 @property (nonatomic, retain) NSArray *beacons;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
