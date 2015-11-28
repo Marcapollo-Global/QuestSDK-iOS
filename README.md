@@ -30,4 +30,10 @@ QuestSDK is available under the MIT license. See the LICENSE file for more info.
 
 ## Troubleshooting
 ### App cannot detect beacons, and iOS deson't prompt to ask user for authorization.
-http://stackoverflow.com/questions/20664928/ios-core-location-is-not-asking-users-permission-while-installing-the-app-get
+http://nevan.net/2014/09/core-location-manager-changes-in-ios-8/
+
+<b>The first thing you need to do is to add one or both of the following keys to your Info.plist file:</b>
+```
+NSLocationWhenInUseUsageDescription
+NSLocationAlwaysUsageDescription
+```
