@@ -29,5 +29,5 @@ marcapollo.com
 QuestSDK is available under the MIT license. See the LICENSE file for more info.
 
 ## Troubleshooting
-App cannot detect beacons, and iOS deson't prompt to ask user for authorization.
+### App cannot detect beacons, and iOS deson't prompt to ask user for authorization.
 http://stackoverflow.com/questions/20664928/ios-core-location-is-not-asking-users-permission-while-installing-the-app-get
