@@ -28,61 +28,176 @@ FOUNDATION_EXPORT NSString *kQuestBeaconPropertyUUID;
 
 @class CLBeacon;
 
+/**
+ * MQBeacon presents a beacon get from server or detected from monitoring.
+ */
 @interface MQBeacon : NSObject<NSCopying, MQJsonParsable>
 
+/**
+ * Beacon UUID
+ */
 @property (nonatomic, copy) NSString *uuid;
+/**
+ * Major Number
+ */
 @property (nonatomic, assign) NSInteger major;
+/**
+ * Minor Number
+ */
 @property (nonatomic, assign) NSInteger minor;
+/**
+ * Tag name.
+ */
 @property (nonatomic, copy) NSString *tagName;
-// The detected raw CoreLocation beacon
+/**
+ * The raw CoreLocation beacon. This property will be available if the beacon is detected from monitoring calls.
+ * @see QuestSDK startMonitoringForBeacon:
+ */
 @property (nonatomic, retain) CLBeacon *clBeacon;
 
 @end
 
+/**
+ * MQFlyer presents a flyer associated to a beacon.
+ */
 @interface MQFlyer : NSObject <MQJsonParsable>
 
+/**
+ * Flyer ID.
+ */
 @property (nonatomic, copy) NSString *flyerId;
+/**
+ * Order in sorting.
+ */
 @property (nonatomic, copy) NSString *order;
+/**
+ * Flyer type.
+ */
 @property (nonatomic, copy) NSString *type;
+/**
+ * Flyer content.
+ */
 @property (nonatomic, copy) NSString *content;
+/**
+ * Audio content.
+ */
 @property (nonatomic, copy) NSString *audioFile;
+/**
+ * Video or image content.
+ */
 @property (nonatomic, copy) NSString *videoImageFile;
+/**
+ * Text content title.
+ */
 @property (nonatomic, copy) NSString *textTitle;
+/**
+ * Text description.
+ */
 @property (nonatomic, copy) NSString *textDescription;
 
 @end
 
+/**
+ * MQNotification presents a notification associated to a beacon.
+ */
 @interface MQNotification : NSObject <MQJsonParsable>
-
+/**
+ * Notification ID.
+ */
 @property (nonatomic, copy) NSString *notificationId;
+/**
+ * Notification message.
+ */
 @property (nonatomic, copy) NSString *message;
 
 @end
 
+/**
+ * MQStore presents a store associated to the application.
+ */
 @interface MQStore : NSObject <MQJsonParsable>
 
+/**
+ * Store UUID.
+ */
 @property (nonatomic, copy) NSString *uuid;
+/**
+ * Store introduction.
+ */
 @property (nonatomic, copy) NSString *intro;
+/**
+ * Store address.
+ */
 @property (nonatomic, copy) NSString *address;
+/**
+ * Is booking available.
+ */
 @property (nonatomic, copy) NSString *booking;
+/**
+ * Header image.
+ */
 @property (nonatomic, copy) NSString *headerImg;
+/**
+ * Image used in list view.
+ */
 @property (nonatomic, copy) NSString *listImg;
+/**
+ * Logo image.
+ */
 @property (nonatomic, copy) NSString *logo;
+/**
+ * Store name.
+ */
 @property (nonatomic, copy) NSString *name;
+/**
+ * Store note.
+ */
 @property (nonatomic, copy) NSString *note;
+/**
+ * Store telephone number.
+ */
 @property (nonatomic, copy) NSString *tel;
+/**
+ * Store website url.
+ */
 @property (nonatomic, copy) NSString *website;
+/**
+ * Is chatting available.
+ */
 @property (nonatomic, assign) BOOL chat;
+/**
+ * Is flyer available.
+ */
 @property (nonatomic, assign) BOOL flyer;
+/**
+ * Is wifi available.
+ */
 @property (nonatomic, assign) BOOL wifi;
+/**
+ * Is ICG available.
+ */
 @property (nonatomic, assign) BOOL icg;
+/**
+ * Store location - latitude.
+ */
 @property (nonatomic, assign) double latitude;
+/**
+ * Store location - longitude.
+ */
 @property (nonatomic, assign) double longitude;
 
 @end
 
+/**
+ * Delegate to receive beacon monitoring notifications.
+ */
 @protocol MQMonitoringForBeaconDelegate <NSObject>
 
+/**
+ * Did receive ranging beacons notification.
+ *
+ * @param beacons   Detected beacons with ranging info, which is in the raw CoreLocation beacon property. @see MQBeacon clBeacon.
+ */
 - (void) questDidRangeBeacons:(NSArray<MQBeacon *> *)beacons;
 
 @end
@@ -172,6 +287,9 @@ typedef void (^QueryCompletionHandler)(NSArray *, NSError *);
  */
 - (void) stopMonitoringForBeacon:(MQBeacon *)beacon;
 
+/**
+ * Beacon monitoring delegate.
+ */
 @property (nonatomic, retain) id<MQMonitoringForBeaconDelegate> monitoringDelegate;
 
 @end

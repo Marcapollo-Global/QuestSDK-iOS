@@ -26,7 +26,7 @@ const NSString *kQuestBeaconPropertyUUID = @"beacon_uuid";
 
 const NSString *kSERVER_URL = @"http://localhost:3000/v1";
 
-const NSString *kSDKVersion = @"0.1.2";
+const NSString *kSDKVersion = @"0.1.3";
 
 @interface QuestSDK() <CLLocationManagerDelegate>
 
