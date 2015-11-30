@@ -17,7 +17,7 @@ FOUNDATION_EXPORT NSInteger const kQuestSDKErrorAppKeyNotSet;
 FOUNDATION_EXPORT NSInteger const kQuestSDKErrorUnauthorized;
 FOUNDATION_EXPORT NSInteger const kQuestSDKErrorResourceNotFound;
 
-FOUNDATION_EXPORT NSString *kQuestBeaconPropertyUUID;
+FOUNDATION_EXPORT NSString * const kQuestBeaconPropertyUUID;
 
 @protocol MQJsonParsable <NSObject>
 

@@ -23,11 +23,13 @@ NSInteger const kQuestSDKErrorAppKeyNotSet = 1;
 NSInteger const kQuestSDKErrorUnauthorized = 2;
 NSInteger const kQuestSDKErrorResourceNotFound = 404;
 
-const NSString *kQuestBeaconPropertyUUID = @"beacon_uuid";
+NSString * const kQuestBeaconPropertyUUID = @"beacon_uuid";
 
-const NSString *kSERVER_URL = @"http://localhost:3000/v1";
+NSString * const kSERVER_URL = @"http://localhost:3000/v1";
 
-const NSString *kSDKVersion = @"0.1.3";
+NSString * const kSDKVersion = @"0.1.4";
+
+NSString * const kQuestSDKUserUUID = @"QuestSDK_USER_UUID";
 
 @interface QuestSDK() <CLLocationManagerDelegate>
 
@@ -60,7 +62,12 @@ static id _sharedInstance;
 
 - (instancetype) init
 {
-    self.userUUID = [[NSUUID UUID] UUIDString];
+    self.userUUID = [[NSUserDefaults standardUserDefaults] stringForKey:kQuestSDKUserUUID];
+    if (!self.userUUID || [self.userUUID length] == 0) {
+        // Generate a new user UUID
+        self.userUUID = [[NSUUID UUID] UUIDString];
+        [[NSUserDefaults standardUserDefaults] setObject:self.userUUID forKey:kQuestSDKUserUUID];
+    }
     return self;
 }
 
