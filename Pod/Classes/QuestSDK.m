@@ -16,15 +16,17 @@
 #import "MQNotification.h"
 #import "MQStore.h"
 
-NSString const *kQuestSDKErrorDomain = @"QuestSDK";
-NSString const *kQuestRequestErrorDomain = @"QuestQuery";
+NSString * const kQuestSDKErrorDomain = @"QuestSDK";
+NSString * const kQuestRequestErrorDomain = @"QuestQuery";
 NSInteger const kQuestSDKErrorAppKeyNotSet = 1;
 NSInteger const kQuestSDKErrorUnauthorized = 2;
 NSInteger const kQuestSDKErrorResourceNotFound = 404;
 
-NSString const *kQuestBeaconPropertyUUID = @"beacon_uuid";
+const NSString *kQuestBeaconPropertyUUID = @"beacon_uuid";
 
-NSString const *kSERVER_URL = @"http://192.168.1.103:3000/v1";
+const NSString *kSERVER_URL = @"http://localhost:3000/v1";
+
+const NSString *kSDKVersion = @"0.1.0";
 
 @interface QuestSDK() <CLLocationManagerDelegate>
 
@@ -48,6 +50,11 @@ static id _sharedInstance;
     }
     
     return _sharedInstance;
+}
+
++ (NSString *) sdkVersion
+{
+    return [kSDKVersion copy];
 }
 
 - (instancetype) init
@@ -95,6 +102,16 @@ static id _sharedInstance;
         self.appID = [responseObject valueForKey:@"app_id"];
         self.appUUID = [responseObject valueForKey:@"app_uuid"];
         self.token = [responseObject valueForKey:@"token"];
+        
+        NSDictionary *latestSdkInfo = [responseObject valueForKey:@"latest_sdk"];
+        if (latestSdkInfo) {
+            NSString *latestSDKVersion = [latestSdkInfo valueForKey:@"version"];
+            if (![kSDKVersion isEqualToString:latestSDKVersion]) {
+                NSString *homepage = [latestSdkInfo valueForKey:@"homepage"];
+                NSLog(@"!!!Attention!!!\nThe latest QuestSDK version is \"%@\", your current version is: \"%@\".\nFor more details, please visit %@",
+                      latestSDKVersion, kSDKVersion, homepage);
+            }
+        }
         
         if (complete) {
             complete(nil);

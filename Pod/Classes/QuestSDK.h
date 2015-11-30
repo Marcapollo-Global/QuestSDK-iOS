@@ -10,8 +10,8 @@
 
 // In this header, you should import all the public headers of your framework using statements like #import <QuestSDK/PublicHeader.h>
 
-FOUNDATION_EXPORT NSString *kQuestSDKErrorDomain;
-FOUNDATION_EXPORT NSString *kQuestRequestErrorDomain;
+FOUNDATION_EXPORT NSString * const kQuestSDKErrorDomain;
+FOUNDATION_EXPORT NSString * const kQuestRequestErrorDomain;
 
 FOUNDATION_EXPORT NSInteger const kQuestSDKErrorAppKeyNotSet;
 FOUNDATION_EXPORT NSInteger const kQuestSDKErrorUnauthorized;
@@ -94,6 +94,8 @@ typedef void (^QueryCompletionHandler)(NSArray *, NSError *);
 @property (nonatomic, copy) NSString *appKey;
 
 + (instancetype) sharedInstance;
+
++ (NSString *) sdkVersion;
 
 - (BOOL) isAuthorized;
 

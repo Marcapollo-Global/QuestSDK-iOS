@@ -17,6 +17,7 @@
 @property (nonatomic) NSArray *rows;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *versionInfo;
 
 @end
 
@@ -33,6 +34,8 @@
                  @"List application beacons",
                  @"List application stores",
                  nil];
+    
+    [self.versionInfo setText:[NSString stringWithFormat:@"Quest SDK Version: %@", [QuestSDK sdkVersion]]];
     
     [[QuestSDK sharedInstance] setAppKey:@"ec1a07a0-389c-11e4-b7f4-5b0b1df46947"];
 }
