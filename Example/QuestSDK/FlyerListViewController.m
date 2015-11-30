@@ -7,9 +7,12 @@
 //
 
 #import "FlyerListViewController.h"
+#import "MQFlyerTableViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 #import <QuestSDK/QuestSDK.h>
 
 @interface FlyerListViewController () <UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -20,6 +23,8 @@
     // Do any additional setup after loading the view from its nib.
     
     self.title = @"Flyers";
+    
+    [self.tableView registerNib:[MQFlyerTableViewCell nib] forCellReuseIdentifier:[MQFlyerTableViewCell reuseIdentifier]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,7 +44,7 @@
     
     MQFlyer *flyer = [self.flyers objectAtIndex:indexPath.item];
     
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    MQFlyerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[MQFlyerTableViewCell reuseIdentifier] forIndexPath:indexPath];
     
     NSMutableString *content = [[NSMutableString alloc] init];
     [content appendFormat:@"%@\n", flyer.flyerId];
@@ -49,6 +54,9 @@
     [cell.textLabel setText:content];
     [cell.textLabel setNumberOfLines:0];
     
+    if (flyer.type == MQFlyerTypeImage) {
+        [cell.imageContent sd_setImageWithURL:[NSURL URLWithString:flyer.content]];
+    }
     return cell;
 }
 

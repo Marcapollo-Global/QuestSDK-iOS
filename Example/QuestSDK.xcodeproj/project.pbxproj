@@ -23,6 +23,8 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		656225A8818C8AADE1F2A55A /* Pods_QuestSDK_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D026F330CEE852D165A12E09 /* Pods_QuestSDK_Tests.framework */; };
+		FCBAC5341C0C249100EF1870 /* MQFlyerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBAC5321C0C249100EF1870 /* MQFlyerTableViewCell.m */; };
+		FCBAC5351C0C249100EF1870 /* MQFlyerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCBAC5331C0C249100EF1870 /* MQFlyerTableViewCell.xib */; };
 		FCD1F2281BFB0D670014650A /* BeaconListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD1F2231BFB0D670014650A /* BeaconListViewController.m */; };
 		FCD1F2291BFB0D670014650A /* BeaconListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCD1F2241BFB0D670014650A /* BeaconListViewController.xib */; };
 		FCD1F22A1BFB0D670014650A /* FlyerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD1F2261BFB0D670014650A /* FlyerListViewController.m */; };
@@ -77,6 +79,9 @@
 		BF33A2EAFF93E258329D038C /* Pods_QuestSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuestSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D026F330CEE852D165A12E09 /* Pods_QuestSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuestSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F98EC508FDC16C3315F18697 /* QuestSDK.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = QuestSDK.podspec; path = ../QuestSDK.podspec; sourceTree = "<group>"; };
+		FCBAC5311C0C249100EF1870 /* MQFlyerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MQFlyerTableViewCell.h; sourceTree = "<group>"; };
+		FCBAC5321C0C249100EF1870 /* MQFlyerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MQFlyerTableViewCell.m; sourceTree = "<group>"; };
+		FCBAC5331C0C249100EF1870 /* MQFlyerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MQFlyerTableViewCell.xib; sourceTree = "<group>"; };
 		FCD1F2221BFB0D670014650A /* BeaconListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeaconListViewController.h; sourceTree = "<group>"; };
 		FCD1F2231BFB0D670014650A /* BeaconListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconListViewController.m; sourceTree = "<group>"; };
 		FCD1F2241BFB0D670014650A /* BeaconListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BeaconListViewController.xib; sourceTree = "<group>"; };
@@ -186,6 +191,9 @@
 				6003F594195388D20070C39A /* Supporting Files */,
 				14D300BE1C097EB000136FF1 /* ScanBeaconListViewController.h */,
 				14D300BF1C097EB000136FF1 /* ScanBeaconListViewController.m */,
+				FCBAC5311C0C249100EF1870 /* MQFlyerTableViewCell.h */,
+				FCBAC5321C0C249100EF1870 /* MQFlyerTableViewCell.m */,
+				FCBAC5331C0C249100EF1870 /* MQFlyerTableViewCell.xib */,
 			);
 			name = "Example for QuestSDK";
 			path = QuestSDK;
@@ -328,6 +336,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCBAC5351C0C249100EF1870 /* MQFlyerTableViewCell.xib in Resources */,
 				FCD1F22B1BFB0D670014650A /* FlyerListViewController.xib in Resources */,
 				FCD1F23F1BFB15D90014650A /* LaunchScreen.storyboard in Resources */,
 				FCD1F23A1BFB0D740014650A /* NotificationListViewController.xib in Resources */,
@@ -453,6 +462,7 @@
 				FCD1F22A1BFB0D670014650A /* FlyerListViewController.m in Sources */,
 				6003F59E195388D20070C39A /* MQAppDelegate.m in Sources */,
 				14D300C11C097EB000136FF1 /* ScanBeaconListViewController.m in Sources */,
+				FCBAC5341C0C249100EF1870 /* MQFlyerTableViewCell.m in Sources */,
 				FCD1F23B1BFB0D740014650A /* StoreListViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				FCD1F2391BFB0D740014650A /* NotificationListViewController.m in Sources */,

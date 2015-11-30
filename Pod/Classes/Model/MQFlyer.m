@@ -7,6 +7,7 @@
 //
 
 #import "MQFlyer.h"
+#import "QuestSDK_internal.h"
 
 @implementation MQFlyer
 
@@ -30,8 +31,9 @@
 - (instancetype) initWithJSON:(id)json
 {
     self.flyerId = [json valueForKey:@"beacon_flyers_id"];
+    self.beaconId = [json valueForKey:@"beacon_id"];
     self.order = [json valueForKey:@"beacon_flyers_order"];
-    self.type = [json valueForKey:@"beacon_flyers_type"];
+    self.type = (MQFlyerType) [[json valueForKey:@"beacon_flyers_type"] integerValue];
     self.content = [json valueForKey:@"beacon_flyers_content"];
     self.audioFile = [json valueForKey:@"beacon_flyers_audio_file"];
     self.videoImageFile = [json valueForKey:@"beacon_flyers_videoimg_file"];
@@ -43,8 +45,47 @@
     if (!self.textDescription) {
         self.textDescription = @"";
     }
+    self.distance = [json valueForKey:@"beacon_flyers_distance"];
+    self.isLogin = [json valueForKey:@"beacon_flyers_islogin"];
+    self.isActivated = [json valueForKey:@"beacon_flyers_activate"];
     
     return self;
+}
+
+- (NSString *) content
+{
+    NSString *url;
+    switch (self.type) {
+        case MQFlyerTypeImage:
+            url = [NSString stringWithFormat:[QuestSDK sharedInstance].urlBeaconFlyerImg, self.beaconId, self.distance, self.order, _content];
+            break;
+        case MQFlyerTypeVideo:
+            url = _content;
+        case MQFlyerTypeWeb:
+        default:
+            url = _content;
+            break;
+    }
+    
+    return url;
+}
+
+- (NSString *) audioFile
+{
+    if (!_audioFile || [_audioFile length] == 0) {
+        return _audioFile;
+    }
+    
+    return [NSString stringWithFormat:[QuestSDK sharedInstance].urlBeaconFlyerAudio, self.beaconId, self.distance, self.order, _audioFile];
+}
+
+- (NSString *) videoImageFile
+{
+    if (!_videoImageFile || [_videoImageFile length] == 0) {
+        return _videoImageFile;
+    }
+    
+    return [NSString stringWithFormat:[QuestSDK sharedInstance].urlBeaconFlyerVideoImg, self.beaconId, self.distance, self.order, _videoImageFile];
 }
 
 @end

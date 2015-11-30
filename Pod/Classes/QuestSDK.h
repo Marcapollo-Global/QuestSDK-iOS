@@ -57,6 +57,18 @@ FOUNDATION_EXPORT NSString *kQuestBeaconPropertyUUID;
 
 @end
 
+typedef enum {
+    MQFlyerTypeImage = 1,
+    MQFlyerTypeVideo = 2,
+    MQFlyerTypeWeb = 3,
+} MQFlyerType;
+
+typedef enum {
+    MQFlyerDistanceImmediate = 1,
+    MQFlyerDistanceNear = 2,
+    MQFlyerDistanceFar = 4,
+} MQFlyerDistance;
+
 /**
  * MQFlyer presents a flyer associated to a beacon.
  */
@@ -67,13 +79,17 @@ FOUNDATION_EXPORT NSString *kQuestBeaconPropertyUUID;
  */
 @property (nonatomic, copy) NSString *flyerId;
 /**
+ * The ID of the beacon which this flyer associated to.
+ */
+@property (nonatomic, copy) NSNumber *beaconId;
+/**
  * Order in sorting.
  */
-@property (nonatomic, copy) NSString *order;
+@property (nonatomic, copy) NSNumber *order;
 /**
  * Flyer type.
  */
-@property (nonatomic, copy) NSString *type;
+@property (nonatomic, assign) MQFlyerType type;
 /**
  * Flyer content.
  */
@@ -83,7 +99,7 @@ FOUNDATION_EXPORT NSString *kQuestBeaconPropertyUUID;
  */
 @property (nonatomic, copy) NSString *audioFile;
 /**
- * Video or image content.
+ * Video preview image.
  */
 @property (nonatomic, copy) NSString *videoImageFile;
 /**
@@ -94,7 +110,19 @@ FOUNDATION_EXPORT NSString *kQuestBeaconPropertyUUID;
  * Text description.
  */
 @property (nonatomic, copy) NSString *textDescription;
-
+/**
+ * What distance should the flyer to be presented.
+ * Could be sum of MQFlyerDistance. @see MQFlyerDistance
+ */
+@property (nonatomic, copy) NSNumber *distance;
+/**
+ * Whether login is required to see this flyer.
+ */
+@property (nonatomic, copy) NSNumber *isLogin;
+/**
+ * Is this flyer activated.
+ */
+@property (nonatomic, copy) NSNumber *isActivated;
 @end
 
 /**

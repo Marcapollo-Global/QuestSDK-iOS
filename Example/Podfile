@@ -3,6 +3,7 @@ use_frameworks!
 
 target 'QuestSDK_Example', :exclusive => true do
   pod "QuestSDK", :path => "../"
+  pod 'SDWebImage', '~>3.7'
 end
 
 target 'QuestSDK_Tests', :exclusive => true do
