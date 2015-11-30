@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "QuestSDK"
-  s.version          = "0.1.0"
+  s.version          = "0.1.1"
   s.summary          = "Marcapollo QuestSDK for iOS."
 
 # This description is used to generate tags and improve search results.
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!  
   s.description      = <<-DESC
-                        Marcapollo QuestSDK for iOS.
+                        Marcapollo QuestSDK for iOS, a total solution of iBeacon.
                        DESC
 
   s.homepage         = "https://github.com/shine-chen/QuestSDK-iOS"
@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/shine-chen/QuestSDK-iOS.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.platform     = :ios, '7.0'
+  s.platform     = :ios, '8.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'

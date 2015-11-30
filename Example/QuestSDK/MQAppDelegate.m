@@ -14,14 +14,16 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
-    NSLog(@"screen: %@", [UIScreen mainScreen].bounds);
+
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     MainViewController *viewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
     UINavigationController *navViewController = [[UINavigationController alloc] initWithRootViewController:viewController];
     self.window.rootViewController = navViewController;
     [self.window makeKeyAndVisible];
+    
+    NSLog(@"backgroundRefreshStatus = %ld", application.backgroundRefreshStatus);
+    
     
     return YES;
 }

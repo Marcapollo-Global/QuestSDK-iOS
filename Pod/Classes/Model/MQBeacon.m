@@ -49,7 +49,7 @@
 
 - (NSString *) description
 {
-    return [NSString stringWithFormat:@"%@, %ld, %ld", self.uuid, self.major, self.minor];
+    return [NSString stringWithFormat:@"%@, %@, %@", self.uuid, @(self.major), @(self.minor)];
 }
 
 @end

@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1DCA338EED5308084871359F /* Pods_QuestSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF33A2EAFF93E258329D038C /* Pods_QuestSDK_Example.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		14D300BD1C0968E200136FF1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D300BC1C0968E200136FF1 /* CoreLocation.framework */; };
+		14D300C11C097EB000136FF1 /* ScanBeaconListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D300BF1C097EB000136FF1 /* ScanBeaconListViewController.m */; };
+		1DCA338EED5308084871359F /* Pods_QuestSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF33A2EAFF93E258329D038C /* Pods_QuestSDK_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -20,7 +22,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
-		656225A8818C8AADE1F2A55A /* Pods_QuestSDK_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D026F330CEE852D165A12E09 /* Pods_QuestSDK_Tests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		656225A8818C8AADE1F2A55A /* Pods_QuestSDK_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D026F330CEE852D165A12E09 /* Pods_QuestSDK_Tests.framework */; };
 		FCD1F2281BFB0D670014650A /* BeaconListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD1F2231BFB0D670014650A /* BeaconListViewController.m */; };
 		FCD1F2291BFB0D670014650A /* BeaconListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCD1F2241BFB0D670014650A /* BeaconListViewController.xib */; };
 		FCD1F22A1BFB0D670014650A /* FlyerListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD1F2261BFB0D670014650A /* FlyerListViewController.m */; };
@@ -47,6 +49,9 @@
 
 /* Begin PBXFileReference section */
 		07307400531BCA81B3E46635 /* Pods-QuestSDK_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuestSDK_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuestSDK_Example/Pods-QuestSDK_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		14D300BC1C0968E200136FF1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		14D300BE1C097EB000136FF1 /* ScanBeaconListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanBeaconListViewController.h; sourceTree = "<group>"; };
+		14D300BF1C097EB000136FF1 /* ScanBeaconListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanBeaconListViewController.m; sourceTree = "<group>"; };
 		17862CEC5227082BF55BFA2F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		1AF236811134EC741DAE9F48 /* Pods-QuestSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuestSDK_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-QuestSDK_Example/Pods-QuestSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
 		4240FFA3394DCB36B3910286 /* Pods-QuestSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuestSDK_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuestSDK_Tests/Pods-QuestSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -97,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14D300BD1C0968E200136FF1 /* CoreLocation.framework in Frameworks */,
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
@@ -142,6 +148,7 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				14D300BC1C0968E200136FF1 /* CoreLocation.framework */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
@@ -177,6 +184,8 @@
 				FCD1F23E1BFB15D90014650A /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				14D300BE1C097EB000136FF1 /* ScanBeaconListViewController.h */,
+				14D300BF1C097EB000136FF1 /* ScanBeaconListViewController.m */,
 			);
 			name = "Example for QuestSDK";
 			path = QuestSDK;
@@ -284,9 +293,12 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MQ;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = Marcapollo;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = R4YHL572U2;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -440,6 +452,7 @@
 				FCD1F23D1BFB0D740014650A /* UIUtils.m in Sources */,
 				FCD1F22A1BFB0D670014650A /* FlyerListViewController.m in Sources */,
 				6003F59E195388D20070C39A /* MQAppDelegate.m in Sources */,
+				14D300C11C097EB000136FF1 /* ScanBeaconListViewController.m in Sources */,
 				FCD1F23B1BFB0D740014650A /* StoreListViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				FCD1F2391BFB0D740014650A /* NotificationListViewController.m in Sources */,
@@ -502,6 +515,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -562,6 +576,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuestSDK/QuestSDK-Prefix.pch";
 				INFOPLIST_FILE = "QuestSDK/QuestSDK-Info.plist";
@@ -580,6 +595,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuestSDK/QuestSDK-Prefix.pch";
 				INFOPLIST_FILE = "QuestSDK/QuestSDK-Info.plist";
@@ -609,6 +625,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuestSDK_Example.app/QuestSDK_Example";
 				WRAPPER_EXTENSION = xctest;
@@ -628,6 +645,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuestSDK_Example.app/QuestSDK_Example";
 				WRAPPER_EXTENSION = xctest;

@@ -8,9 +8,12 @@
 
 #import "BeaconListViewController.h"
 #import <QuestSDK/QuestSDK.h>
+#import <CoreLocation/CoreLocation.h>
 
 #import "FlyerListViewController.h"
 #import "NotificationListViewController.h"
+#import "StoreListViewController.h"
+#import "ScanBeaconListViewController.h"
 #import "UIUtils.h"
 
 @interface BeaconListViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -54,6 +57,10 @@
         [content appendFormat:@"\n%@", beacon.tagName];
     }
     
+    if (beacon.clBeacon) {
+        [content appendFormat:@"\nrssi = %ld, proximity=%ld", beacon.clBeacon.rssi, beacon.clBeacon.proximity];
+    }
+    
     [cell.textLabel setText:content];
     
     [cell.textLabel sizeToFit];
@@ -75,18 +82,23 @@
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
     
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Scan" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-
-    }]];
+    // If raw CoreLocation CLBeacon is not available
+    if (!beacon.clBeacon) {
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Scan" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self scan:beacon];
+        }]];
+    }
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"List Flyers" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
         [self listFlyers:beacon];
     }]];
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"List Notifications" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
         [self listNotifications:beacon];
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"List Stores" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self listStores:beacon];
     }]];
     
     [self presentViewController:alertController animated:YES completion:nil];
@@ -135,10 +147,30 @@
     }];
 }
 
+- (void) listStores:(MQBeacon *) beacon
+{
+    if (!beacon.major || !beacon.minor) {
+        beacon = [beacon copy];
+        beacon.major = 1;
+        beacon.minor = 1;
+    }
+    
+    [[QuestSDK sharedInstance] listBeaconStores:beacon withComplete:^(NSArray *data, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+            [UIUtils alertError:error withParent:self];
+            return;
+        }
+        
+        [self showStores:data];
+    }];
+}
+
 #pragma mark - Navigation
 
 - (void) showFlyers:(NSArray *) flyers
 {
+    NSLog(@"%s", __FUNCTION__);
     FlyerListViewController *viewController = [[FlyerListViewController alloc] initWithNibName:@"FlyerListViewController" bundle:nil];
     
     viewController.flyers = flyers;
@@ -148,9 +180,28 @@
 
 - (void) showNotifications:(NSArray *)notifications
 {
+    NSLog(@"%s", __FUNCTION__);
     NotificationListViewController *viewController = [[NotificationListViewController alloc] initWithNibName:@"NotificationListViewController" bundle:nil];
     
     viewController.notifications = notifications;
+    
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (void) showStores:(NSArray *) stores
+{
+    NSLog(@"%s", __FUNCTION__);
+    StoreListViewController *viewController = [[StoreListViewController alloc] initWithNibName:@"StoreListViewController" bundle:nil];
+    viewController.stores = stores;
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (void) scan:(MQBeacon *) beacon
+{
+    NSLog(@"%s", __FUNCTION__);
+    
+    ScanBeaconListViewController *viewController = [[ScanBeaconListViewController alloc] initWithNibName:@"BeaconListViewController" bundle:nil];
+    viewController.beaconGroupToScan = beacon;
     
     [self.navigationController pushViewController:viewController animated:YES];
 }
