@@ -91,39 +91,85 @@ typedef void (^QueryCompletionHandler)(NSArray *, NSError *);
 
 @interface QuestSDK : NSObject
 
+/**
+ * Your App key to access Marcapollo Quest
+ */
 @property (nonatomic, copy) NSString *appKey;
 
+/**
+ * Returns global shared instance.
+ * @return QuestSDK global instance.
+ */
 + (instancetype) sharedInstance;
 
+/**
+ * Returns SDK version
+ * @return QuestSDK version
+ */
 + (NSString *) sdkVersion;
 
+/**
+ * Checks if authorization is performed and passed. Once authrozed, you can continue to access the Quest Web Services.
+ * @return If authorized by Server.
+ */
 - (BOOL) isAuthorized;
 
+/**
+ * Request for authorization.
+ * @param complete  The completion handler.
+ */
 - (void) auth:(void(^)(NSError *))complete;
 
-// List application beacons
+/**
+ * List beacons owned by this application.
+ */
 - (void) listAppBeacons:(QueryCompletionHandler)complete;
 
-// List beacon flyers
+/**
+ * List flyers of a specified beacon
+ * @param beacon    The beacon to list for flyers.
+ */
 - (void) listBeaconFlyers:(MQBeacon *)beacon withComplete:(QueryCompletionHandler)complete;
 
-// List beacon notifications
+/**
+ * List notifications of a specified beacon
+ * @param beacon    The beacon to list for notifications.
+ */
 - (void) listBeaconNotifications:(MQBeacon *)beacon withComplete:(QueryCompletionHandler)complete;
 
-// List beacon stores
+/**
+ * List store(s) the specified beacon blongs to.
+ * @param beacon    The beacon to list stores it belongs to.
+ */
 - (void) listBeaconStores:(MQBeacon *)beacon withComplete:(QueryCompletionHandler) complete;
 
-// List application stores
+/**
+ * List stores owned by this application
+ */
 - (void) listAppStores:(QueryCompletionHandler)complete;
 
-// Lits store beacons
+/**
+ * Lits beacons in a specified store.
+ * @param store The store to list for beacons.
+ */
 - (void) listStoreBeacons:(MQStore *)store withComplete:(QueryCompletionHandler)complete;
 
+/**
+ * Check if user authorized permissions related to detecting beacons.
+ * Present dialog to ask user for permissions if user has not decided yet.
+ */
 - (BOOL) checkOrAskForUserPermission;
 
-// Start monitoring for beacon
+/**
+ * Start monitoring for beacon(s).
+ * @param beacon    Beacon or beacon gorup to monitor.
+ */
 - (void) startMonitoringForBeacon:(MQBeacon *)beacon;
-// Stop monitoring for beacon
+
+/**
+ * Stop monitoring for beacon(s).
+ * @param beacon    Beacon or beacon gorup to monitor.
+ */
 - (void) stopMonitoringForBeacon:(MQBeacon *)beacon;
 
 @property (nonatomic, retain) id<MQMonitoringForBeaconDelegate> monitoringDelegate;
