@@ -226,10 +226,10 @@ static id _sharedInstance;
 {
     NSLog(@"%s", __FUNCTION__);
     
-    [self queryPath:[NSString stringWithFormat:@"beacons/%@/%ld/%ld/flyers/",
+    [self queryPath:[NSString stringWithFormat:@"beacons/%@/%@/%@/flyers/",
                      beacon.uuid,
-                     beacon.major,
-                     beacon.minor]
+                     @(beacon.major),
+                     @(beacon.minor)]
    withSerializable:[MQFlyer class] completionHandler:complete];
 }
 
@@ -237,10 +237,10 @@ static id _sharedInstance;
 {
     NSLog(@"%s", __FUNCTION__);
     
-    [self queryPath:[NSString stringWithFormat:@"beacons/%@/%ld/%ld/stores/",
+    [self queryPath:[NSString stringWithFormat:@"beacons/%@/%@/%@/stores/",
                      beacon.uuid,
-                     beacon.major,
-                     beacon.minor]
+                     @(beacon.major),
+                     @(beacon.minor)]
    withSerializable:[MQStore class] completionHandler:complete];
 }
 
@@ -248,10 +248,10 @@ static id _sharedInstance;
 {
     NSLog(@"%s", __FUNCTION__);
     
-    [self queryPath:[NSString stringWithFormat:@"beacons/%@/%ld/%ld/notifications/",
+    [self queryPath:[NSString stringWithFormat:@"beacons/%@/%@/%@/notifications/",
                      beacon.uuid,
-                     beacon.major,
-                     beacon.minor]
+                     @(beacon.major),
+                     @(beacon.minor)]
    withSerializable:[MQNotification class] completionHandler:complete];
 }
 
