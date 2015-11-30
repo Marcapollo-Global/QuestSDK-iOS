@@ -11,6 +11,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <CoreLocation/CoreLocation.h>
 #import "QuestSDK.h"
+#import "QuestSDK_internal.h"
 #import "MQBeacon.h"
 #import "MQFlyer.h"
 #import "MQNotification.h"
@@ -26,7 +27,7 @@ const NSString *kQuestBeaconPropertyUUID = @"beacon_uuid";
 
 const NSString *kSERVER_URL = @"http://localhost:3000/v1";
 
-const NSString *kSDKVersion = @"0.1.2";
+const NSString *kSDKVersion = @"0.1.3";
 
 @interface QuestSDK() <CLLocationManagerDelegate>
 
@@ -111,6 +112,27 @@ static id _sharedInstance;
                 NSLog(@"!!!Attention!!!\nThe latest QuestSDK version is \"%@\", your current version is: \"%@\".\nFor more details, please visit %@",
                       latestSDKVersion, kSDKVersion, homepage);
             }
+        }
+        
+        NSDictionary *urls = [responseObject valueForKey:@"urls"];
+        if (urls) {
+            self.urlBeaconFlyerImg = urls[@"beacon_flyer_img"];
+            self.urlBeaconFlyerImg = [self.urlBeaconFlyerImg stringByReplacingOccurrencesOfString:@":beacon_id" withString:@"%@"];
+            self.urlBeaconFlyerImg = [self.urlBeaconFlyerImg stringByReplacingOccurrencesOfString:@":beacon_flyers_distance" withString:@"%@"];
+            self.urlBeaconFlyerImg = [self.urlBeaconFlyerImg stringByReplacingOccurrencesOfString:@":beacon_flyers_order" withString:@"%@"];
+            self.urlBeaconFlyerImg = [self.urlBeaconFlyerImg stringByReplacingOccurrencesOfString:@":beacon_flyers_content" withString:@"%@"];
+            
+            self.urlBeaconFlyerAudio = urls[@"beacon_flyer_audio"];
+            self.urlBeaconFlyerAudio = [self.urlBeaconFlyerAudio stringByReplacingOccurrencesOfString:@":beacon_id" withString:@"%@"];
+            self.urlBeaconFlyerAudio = [self.urlBeaconFlyerAudio stringByReplacingOccurrencesOfString:@":beacon_flyers_distance" withString:@"%@"];
+            self.urlBeaconFlyerAudio = [self.urlBeaconFlyerAudio stringByReplacingOccurrencesOfString:@":beacon_flyers_order" withString:@"%@"];
+            self.urlBeaconFlyerAudio = [self.urlBeaconFlyerAudio stringByReplacingOccurrencesOfString:@":beacon_flyers_audio_file" withString:@"%@"];
+            
+            self.urlBeaconFlyerVideoImg = urls[@"beacon_flyer_video_thumbnail"];
+            self.urlBeaconFlyerVideoImg = [self.urlBeaconFlyerVideoImg stringByReplacingOccurrencesOfString:@":beacon_id" withString:@"%@"];
+            self.urlBeaconFlyerVideoImg = [self.urlBeaconFlyerVideoImg stringByReplacingOccurrencesOfString:@":beacon_flyers_distance" withString:@"%@"];
+            self.urlBeaconFlyerVideoImg = [self.urlBeaconFlyerVideoImg stringByReplacingOccurrencesOfString:@":beacon_flyers_order" withString:@"%@"];
+            self.urlBeaconFlyerVideoImg = [self.urlBeaconFlyerVideoImg stringByReplacingOccurrencesOfString:@":beacon_flyers_videoimg_file" withString:@"%@"];
         }
         
         if (complete) {
