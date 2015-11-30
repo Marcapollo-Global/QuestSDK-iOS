@@ -11,6 +11,10 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+## How-To-Use
+
+API documentation is available at [CocoaDocs - QuestSDK](http://cocoadocs.org/docsets/QuestSDK/)
+
 ## Requirements
 
 ## Installation
