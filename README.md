@@ -15,9 +15,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 API documentation is available at [CocoaDocs - QuestSDK](http://cocoadocs.org/docsets/QuestSDK/)
 
-## Requirements
-
-## Installation
+## Getting Started
 
 QuestSDK is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
