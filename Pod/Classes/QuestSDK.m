@@ -17,6 +17,8 @@
 #import "MQNotification.h"
 #import "MQStore.h"
 
+//#define DEBUG_QUEST_SDK 1
+
 NSString * const kQuestSDKErrorDomain = @"QuestSDK";
 NSString * const kQuestRequestErrorDomain = @"QuestQuery";
 NSInteger const kQuestSDKErrorAppKeyNotSet = 1;
@@ -25,9 +27,9 @@ NSInteger const kQuestSDKErrorResourceNotFound = 404;
 
 NSString * const kQuestBeaconPropertyUUID = @"beacon_uuid";
 
-NSString * const kSERVER_URL = @"http://localhost:3000/v1";
+NSString * const kSERVER_URL = @"https://labsdk.quest-platform.com/v1";
 
-NSString * const kSDKVersion = @"0.1.4";
+NSString * const kSDKVersion = @"0.1.5";
 
 NSString * const kQuestSDKUserUUID = @"QuestSDK_USER_UUID";
 
@@ -104,9 +106,9 @@ static id _sharedInstance;
     AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     op.responseSerializer = [AFJSONResponseSerializer serializer];
     [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        
+#ifdef DEBUG_QUEST_SDK
         NSLog(@"JSON: %@", responseObject);
-        
+#endif
         self.appID = [responseObject valueForKey:@"app_id"];
         self.appUUID = [responseObject valueForKey:@"app_uuid"];
         self.token = [responseObject valueForKey:@"token"];
@@ -161,9 +163,11 @@ static id _sharedInstance;
 
 - (void) queryPath:(NSString *)path withSerializable:(Class)class completionHandler:(QueryCompletionHandler)complete
 {
+#ifdef DEBUG_QUEST_SDK
     NSLog(@"%s", __FUNCTION__);
-    NSLog(@"paht: %@", path);
+    NSLog(@"path: %@", path);
     NSLog(@"class: %@", class);
+#endif
     
     // Check if token is set
     if (self.token == nil) {
@@ -187,9 +191,9 @@ static id _sharedInstance;
     AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:url]];
     op.responseSerializer = [AFJSONResponseSerializer serializer];
     [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        
+#ifdef DEBUG_QUEST_SDK
         NSLog(@"Request completed\nJSON: %@", responseObject);
-        
+#endif
         NSArray *data = [class parseArray:[responseObject valueForKey:@"data"]];
         
         if (complete) {

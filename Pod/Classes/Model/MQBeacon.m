@@ -7,6 +7,7 @@
 //
 
 #import "MQBeacon.h"
+#import "NSNull+Extension.h"
 
 @implementation MQBeacon
 
