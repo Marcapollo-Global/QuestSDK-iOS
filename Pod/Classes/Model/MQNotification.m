@@ -7,6 +7,7 @@
 //
 
 #import "MQNotification.h"
+#import "NSNull+Extension.h"
 
 @implementation MQNotification
 
