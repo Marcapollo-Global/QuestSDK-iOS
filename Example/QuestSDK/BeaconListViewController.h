@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class MQBeacon;
+
 @interface BeaconListViewController : UIViewController
 
 @property (nonatomic, retain) NSArray *beacons;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForBeacon:(MQBeacon *)beacon;
 
 @end
