@@ -426,12 +426,11 @@ static id _sharedInstance;
         mqBeacon.clBeacon = beacon;
         [outBeacons addObject:mqBeacon];
         
-        if (!nearestBeacon || nearestBeacon.clBeacon.proximity < beacon.proximity) {
+        if (!nearestBeacon || (nearestBeacon.clBeacon.proximity > beacon.proximity
+                               && beacon.proximity != CLProximityUnknown)) {
             nearestBeacon = mqBeacon;
         }
     }
-    
-    
     
     if (self.monitoringDelegate) {
         dispatch_async(dispatch_get_main_queue(), ^{
