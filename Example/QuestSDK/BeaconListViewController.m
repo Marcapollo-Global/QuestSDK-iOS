@@ -34,18 +34,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - UITableViewDataSource
-
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForBeacon:(MQBeacon *)beacon
 {
-    return [self.beacons count];
-}
-
-- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    MQBeacon *beacon = [self.beacons objectAtIndex:indexPath.item];
-    
     UITableViewCell *cell = [[UITableViewCell alloc] init];
+    
+    if (!beacon) {
+        return cell;
+    }
     
     cell.textLabel.font = [UIFont systemFontOfSize:14];
     [cell.textLabel setNumberOfLines:0];
@@ -66,6 +61,20 @@
     [cell.textLabel sizeToFit];
     
     return cell;
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.beacons count];
+}
+
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MQBeacon *beacon = [self.beacons objectAtIndex:indexPath.item];
+    
+    return [self tableView:tableView cellForBeacon:beacon];
 }
 
 #pragma mark - UITableViewDelegate

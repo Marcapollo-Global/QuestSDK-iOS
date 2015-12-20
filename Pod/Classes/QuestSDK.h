@@ -221,12 +221,20 @@ typedef enum {
  */
 @protocol MQMonitoringForBeaconDelegate <NSObject>
 
+@optional
 /**
  * Did receive ranging beacons notification.
  *
  * @param beacons   Detected beacons with ranging info, which is in the raw CoreLocation beacon property. @see MQBeacon clBeacon.
  */
 - (void) questDidRangeBeacons:(NSArray<MQBeacon *> *)beacons;
+
+/**
+ * Did detect nearest beacon
+ * 
+ * @param beacon The detect nearest beacon.
+ */
+- (void) questDidDetectNearestBeacon:(MQBeacon *)beacon;
 
 @end
 
