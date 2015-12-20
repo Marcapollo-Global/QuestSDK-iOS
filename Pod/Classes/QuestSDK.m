@@ -29,7 +29,7 @@ NSString * const kQuestBeaconPropertyUUID = @"beacon_uuid";
 
 NSString * const kSERVER_URL = @"https://labsdk.quest-platform.com/v1";
 
-NSString * const kSDKVersion = @"0.1.5";
+NSString * const kSDKVersion = @"0.1.6";
 
 NSString * const kQuestSDKUserUUID = @"QuestSDK_USER_UUID";
 
@@ -415,6 +415,8 @@ static id _sharedInstance;
     
     NSMutableArray *outBeacons = [NSMutableArray arrayWithCapacity:[beacons count]];
     
+    MQBeacon *nearestBeacon;
+    
     for (CLBeacon *beacon in beacons) {
         NSLog(@"beacon: %@", beacon);
         MQBeacon *mqBeacon = [[MQBeacon alloc] init];
@@ -423,11 +425,23 @@ static id _sharedInstance;
         mqBeacon.minor = [beacon.minor integerValue];
         mqBeacon.clBeacon = beacon;
         [outBeacons addObject:mqBeacon];
+        
+        if (!nearestBeacon || nearestBeacon.clBeacon.proximity < beacon.proximity) {
+            nearestBeacon = mqBeacon;
+        }
     }
     
-    if (self.monitoringDelegate && [self.monitoringDelegate respondsToSelector:@selector(questDidRangeBeacons:)]) {
+    
+    
+    if (self.monitoringDelegate) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.monitoringDelegate questDidRangeBeacons:outBeacons];
+            if (self.monitoringDelegate && [self.monitoringDelegate respondsToSelector:@selector(questDidRangeBeacons:)]) {
+                [self.monitoringDelegate questDidRangeBeacons:outBeacons];
+            }
+            
+            if (self.monitoringDelegate && [self.monitoringDelegate respondsToSelector:@selector(questDidDetectNearestBeacon:)]) {
+                [self.monitoringDelegate questDidDetectNearestBeacon:nearestBeacon];
+            }
         });
     }
     
