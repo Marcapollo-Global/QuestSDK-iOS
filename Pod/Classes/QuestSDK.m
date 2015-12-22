@@ -426,9 +426,16 @@ static id _sharedInstance;
         mqBeacon.clBeacon = beacon;
         [outBeacons addObject:mqBeacon];
         
-        if (!nearestBeacon || (nearestBeacon.clBeacon.proximity > beacon.proximity
-                               && beacon.proximity != CLProximityUnknown)) {
+        if (!nearestBeacon) {
             nearestBeacon = mqBeacon;
+        } else if (nearestBeacon.clBeacon.proximity >= beacon.proximity
+                               && beacon.proximity != CLProximityUnknown) {
+            if (nearestBeacon.clBeacon.proximity == beacon.proximity &&
+                nearestBeacon.clBeacon.accuracy > beacon.accuracy) {
+                nearestBeacon = mqBeacon;
+            } else {
+                nearestBeacon = mqBeacon;
+            }
         }
     }
     
