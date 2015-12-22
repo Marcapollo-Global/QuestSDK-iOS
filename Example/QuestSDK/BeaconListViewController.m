@@ -53,7 +53,10 @@
     }
     
     if (beacon.clBeacon) {
-        [content appendFormat:@"\nrssi = %ld, proximity=%ld", beacon.clBeacon.rssi, beacon.clBeacon.proximity];
+        [content appendFormat:@"\nrssi = %ld, proximity=%ld, accuracy=%.3f",
+         beacon.clBeacon.rssi,
+         beacon.clBeacon.proximity,
+         beacon.clBeacon.accuracy];
     }
     
     [cell.textLabel setText:content];
