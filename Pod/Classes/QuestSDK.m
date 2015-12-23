@@ -29,7 +29,7 @@ NSString * const kQuestBeaconPropertyUUID = @"beacon_uuid";
 
 NSString * const kSERVER_URL = @"https://labsdk.quest-platform.com/v1";
 
-NSString * const kSDKVersion = @"0.1.8";
+NSString * const kSDKVersion = @"0.1.9";
 
 NSString * const kQuestSDKUserUUID = @"QuestSDK_USER_UUID";
 
@@ -426,17 +426,22 @@ static id _sharedInstance;
         mqBeacon.clBeacon = beacon;
         [outBeacons addObject:mqBeacon];
         
-        if (!nearestBeacon) {
-            nearestBeacon = mqBeacon;
-        } else if (nearestBeacon.clBeacon.proximity >= beacon.proximity
-                               && beacon.proximity != CLProximityUnknown) {
-            if (nearestBeacon.clBeacon.proximity == beacon.proximity &&
-                nearestBeacon.clBeacon.accuracy > beacon.accuracy) {
+        do {
+            // If nearest beacon is not set yet
+            if (!nearestBeacon) {
                 nearestBeacon = mqBeacon;
-            } else {
-                nearestBeacon = mqBeacon;
+                break;
             }
-        }
+            
+            if ([nearestBeacon compare:mqBeacon] == NSOrderedDescending) {
+                nearestBeacon = mqBeacon;
+                break;
+            }
+            
+            // Othewise, no need to change the nearest beacon.
+            
+        } while(false);
+        
     }
     
     if (self.monitoringDelegate) {
@@ -450,7 +455,6 @@ static id _sharedInstance;
             }
         });
     }
-    
 }
 
 @end
