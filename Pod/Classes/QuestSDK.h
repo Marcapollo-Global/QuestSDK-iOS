@@ -55,6 +55,12 @@ FOUNDATION_EXPORT NSString * const kQuestBeaconPropertyUUID;
  */
 @property (nonatomic, retain) CLBeacon *clBeacon;
 
+/**
+ * Compare beacon by proximity and accuracy. The nearer one ordered accending.
+ * @return comparison result.
+ */
+- (NSComparisonResult)compare:(MQBeacon *)other;
+
 @end
 
 typedef enum {

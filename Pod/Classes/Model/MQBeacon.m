@@ -8,6 +8,7 @@
 
 #import "MQBeacon.h"
 #import "NSNull+Extension.h"
+#import <CoreLocation/CoreLocation.h>
 
 @implementation MQBeacon
 
@@ -51,6 +52,50 @@
 - (NSString *) description
 {
     return [NSString stringWithFormat:@"%@, %@, %@", self.uuid, @(self.major), @(self.minor)];
+}
+
+- (NSComparisonResult)compare:(MQBeacon *)other
+{
+    // Check if CLBeacon is set.
+    
+    if (!self.clBeacon && other.clBeacon) {
+        return NSOrderedDescending;
+    }
+    if (self.clBeacon && !other.clBeacon) {
+        return NSOrderedAscending;
+    }
+    if (!self.clBeacon && !other.clBeacon) {
+        return NSOrderedSame;
+    }
+    
+    // If equal proximity (or both unknown), compare accuracy.
+    if (self.clBeacon.proximity == other.clBeacon.proximity) {
+        if (self.clBeacon.accuracy < other.clBeacon.accuracy) {
+            return NSOrderedAscending;
+        }
+        if (self.clBeacon.accuracy > other.clBeacon.accuracy) {
+            return NSOrderedDescending;
+        }
+        // If equal proximity and accuracy.
+        return NSOrderedSame;
+    }
+    
+    // Compare proximity
+    if (self.clBeacon.proximity == CLProximityUnknown && other.clBeacon.proximity != CLProximityUnknown) {
+        return NSOrderedDescending;
+    }
+    if (self.clBeacon.proximity != CLProximityUnknown && other.clBeacon == CLProximityUnknown) {
+        return NSOrderedAscending;
+    }
+    if (self.clBeacon.proximity < other.clBeacon.proximity) {
+        return NSOrderedAscending;
+    }
+    if (self.clBeacon.proximity > other.clBeacon.proximity) {
+        return NSOrderedDescending;
+    }
+    
+    return NSOrderedSame;
+    
 }
 
 @end
