@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = "QuestSDK"
-  s.version          = "0.1.9"
-  s.summary          = "Marcapollo QuestSDK for iOS."
+  s.version          = "0.1.10"
+  s.summary          = "Marcapollo Quest-Platform SDK for iOS."
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -20,11 +20,11 @@ Pod::Spec.new do |s|
                         Marcapollo QuestSDK for iOS, a total solution of iBeacon.
                        DESC
 
-  s.homepage         = "https://github.com/shine-chen/QuestSDK-iOS"
+  s.homepage         = "https://github.com/Marcapollo-Global/QuestSDK-iOS"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
-  s.author           = { "Shine Chen" => "hsiehwei029@gmail.com" }
-  s.source           = { :git => "https://github.com/shine-chen/QuestSDK-iOS.git", :tag => s.version.to_s }
+  s.author           = { "Marcapollo" => "engineer@marcapollo-global.com" }
+  s.source           = { :git => "https://github.com/Marcapollo-Global/QuestSDK-iOS.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform     = :ios, '8.0'
