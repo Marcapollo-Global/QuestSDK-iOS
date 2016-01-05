@@ -27,9 +27,9 @@ NSInteger const kQuestSDKErrorResourceNotFound = 404;
 
 NSString * const kQuestBeaconPropertyUUID = @"beacon_uuid";
 
-NSString * const kSERVER_URL = @"https://labsdk.quest-platform.com/v1";
+NSString * const kSERVER_URL = @"https://sdk.quest-platform.com/v1";
 
-NSString * const kSDKVersion = @"0.1.9";
+NSString * const kSDKVersion = @"0.1.10";
 
 NSString * const kQuestSDKUserUUID = @"QuestSDK_USER_UUID";
 
