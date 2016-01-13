@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "QuestSDK"
-  s.version          = "0.1.10"
+  s.version          = "0.1.11"
   s.summary          = "Marcapollo Quest-Platform SDK for iOS."
 
 # This description is used to generate tags and improve search results.
